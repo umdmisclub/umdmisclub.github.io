@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIS Club | UMass Dartmouth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f6fa;
+      color: #1a1a2e;
+      overflow-x: hidden;
+    }
+    :root {
+      --navy:       #003764;
+      --navy-dark:  #00243f;
+      --gold:       #FEC24D;
+      --gold-light: #ffe6a0;
+      --teal:       #00AEDD;
+      --teal-dark:  #008db8;
+      --white:      #ffffff;
+      --light-bg:   #f0f4f8;
+      --text-dark:  #0b1d33;
+      --text-muted: #5a6a7e;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .navbar {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(0, 55, 100, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.3s ease;
+    }
+    .navbar .nav-container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 70px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px; background: var(--gold); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 15px; color: var(--navy-dark); letter-spacing: -0.5px;
+    }
+    .nav-logo .logo-text {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 1.15rem; color: var(--white); letter-spacing: 0.5px;
+    }
+    .nav-logo .logo-text span { color: var(--gold); }
+    .nav-links { display: flex; list-style: none; gap: 0; }
+    .nav-links li a {
+      display: block; padding: 0.5rem 1.2rem;
+      color: rgba(255, 255, 255, 0.8); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.3px;
+      border-radius: 8px; transition: all 0.25s ease;
+    }
+    .nav-links li a:hover {
+      color: var(--gold); background: rgba(254, 194, 77, 0.1);
+    }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 5px;
+    }
+    .hamburger span {
+      width: 26px; height: 2.5px; background: var(--white);
+      border-radius: 3px; transition: all 0.3s ease;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(160deg, #001a33 0%, var(--navy) 40%, #004a7c 70%, var(--teal-dark) 100%);
+      overflow: hidden; padding: 100px 2rem 80px;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(254,194,77,0.12) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -30%; left: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,174,221,0.1) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content {
+      position: relative; z-index: 2; text-align: center; max-width: 820px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(254, 194, 77, 0.15);
+      border: 1px solid rgba(254, 194, 77, 0.3);
+      color: var(--gold); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 8px 20px; border-radius: 50px; margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: 4rem;
+      font-weight: 900; color: var(--white); line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--gold), #ffdb80);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem;
+      font-weight: 300; color: rgba(255,255,255,0.7);
+      margin-bottom: 1.5rem; letter-spacing: 0.5px;
+    }
+    .hero-description {
+      font-size: 1.08rem; color: rgba(255, 255, 255, 0.6);
+      line-height: 1.7; max-width: 600px; margin: 0 auto 2.5rem;
+    }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; background: var(--gold); color: var(--navy-dark);
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      border-radius: 12px; transition: all 0.3s ease;
+      border: none; cursor: pointer; letter-spacing: 0.3px;
+    }
+    .btn-primary:hover {
+      background: #ffd06a; transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(254, 194, 77, 0.35);
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; background: transparent; color: var(--white);
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      border-radius: 12px; border: 2px solid rgba(255,255,255,0.25);
+      transition: all 0.3s ease; cursor: pointer; letter-spacing: 0.3px;
+    }
+    .btn-outline:hover {
+      border-color: var(--teal); color: var(--teal);
+      background: rgba(0, 174, 221, 0.08); transform: translateY(-2px);
+    }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 90px 2rem; }
+    .section-container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.75rem;
+    }
+    .section-heading {
+      font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem;
+      font-weight: 800; color: var(--navy); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-subtext {
+      font-size: 1.05rem; color: var(--text-muted);
+      line-height: 1.7; max-width: 650px;
+    }
+
+    /* ===== PILLARS ===== */
+    .pillars-section { background: var(--white); }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .pillar-card {
+      background: var(--light-bg); border-radius: 16px;
+      padding: 2rem 1.75rem; transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+    .pillar-card:hover {
+      transform: translateY(-5px); border-color: var(--gold);
+      box-shadow: 0 12px 40px rgba(0, 55, 100, 0.08);
+    }
+    .pillar-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .pillar-icon.blue { background: rgba(0, 55, 100, 0.1); }
+    .pillar-icon.gold { background: rgba(254, 194, 77, 0.2); }
+    .pillar-icon.teal { background: rgba(0, 174, 221, 0.12); }
+    .pillar-card h3 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem;
+      font-weight: 700; color: var(--navy); margin-bottom: 0.65rem;
+    }
+    .pillar-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ===== ABOUT STRIP ===== */
+    .about-strip {
+      background: linear-gradient(160deg, var(--navy-dark), var(--navy));
+      color: var(--white);
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; margin-top: 2.5rem;
+    }
+    .about-text p {
+      font-size: 1.05rem; line-height: 1.8;
+      color: rgba(255,255,255,0.75); margin-bottom: 1.5rem;
+    }
+    .about-text .highlight-text { color: var(--gold); font-weight: 600; }
+    .stat-row { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem;
+      font-weight: 800; color: var(--gold); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-top: 6px;
+    }
+    .about-visual { display: flex; flex-direction: column; gap: 1rem; }
+    .info-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 14px 20px; border-radius: 12px;
+      font-size: 0.95rem; color: rgba(255,255,255,0.8);
+      transition: all 0.3s ease;
+    }
+    .info-tag:hover {
+      background: rgba(254, 194, 77, 0.08);
+      border-color: rgba(254, 194, 77, 0.25);
+    }
+    .info-tag .tag-icon { font-size: 1.3rem; }
+
+    /* ===== CTA ===== */
+    .cta-section { background: var(--light-bg); text-align: center; }
+    .cta-box {
+      background: linear-gradient(135deg, var(--navy), #004a7c);
+      border-radius: 24px; padding: 4rem 3rem;
+      position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; top: -40%; right: -20%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(254,194,77,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-box h2 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem;
+      font-weight: 800; color: var(--white);
+      margin-bottom: 1rem; position: relative;
+    }
+    .cta-box p {
+      font-size: 1.05rem; color: rgba(255,255,255,0.65);
+      max-width: 500px; margin: 0 auto 2rem;
+      line-height: 1.7; position: relative;
+    }
+    .cta-box .btn-primary { position: relative; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--navy-dark); padding: 3rem 2rem 2rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-container {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left { display: flex; align-items: center; gap: 10px; }
+    .footer-left .f-logo {
+      width: 34px; height: 34px; background: var(--gold);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 12px; color: var(--navy-dark);
+    }
+    .footer-left p { font-size: 0.85rem; }
+    .footer-right { font-size: 0.8rem; letter-spacing: 0.3px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-title { font-size: 2.8rem; }
+      .hero-subtitle { font-size: 1.3rem; }
+    }
+    @media (max-width: 680px) {
+      .nav-links {
+        display: none; position: absolute; top: 70px; left: 0;
+        width: 100%; background: rgba(0, 36, 63, 0.98);
+        flex-direction: column; padding: 1rem; gap: 0;
+        border-bottom: 2px solid var(--gold);
+      }
+      .nav-links.active { display: flex; }
+      .nav-links li a { padding: 0.85rem 1.5rem; }
+      .hamburger { display: flex; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.2rem; }
+      .hero-subtitle { font-size: 1.1rem; }
+      .cta-box { padding: 3rem 1.5rem; }
+      .cta-box h2 { font-size: 1.7rem; }
+      .stat-row { justify-content: center; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">MIS</div>
+        <div class="logo-text">MIS <span>Club</span></div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="officers.html">Officers</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">UMass Dartmouth &bull; College of Business</div>
+      <h1 class="hero-title">
+        Where <span class="highlight">Business</span><br/>Meets <span class="highlight">Technology</span>
+      </h1>
+      <p class="hero-subtitle">Management Information Systems Club</p>
+      <p class="hero-description">
+        Build skills. Make connections. Get experience. Join a community of students
+        exploring the business side of technology &mdash; the systems companies rely on
+        and the people who keep them running.
+      </p>
+      <div class="hero-buttons">
+        <a href="contact.html" class="btn-primary">Join the Club &rarr;</a>
+        <a href="about.html" class="btn-outline">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE OFFER -->
+  <section class="pillars-section">
+    <div class="section-container">
+      <span class="section-label fade-up">What We Offer</span>
+      <h2 class="section-heading fade-up">Hands-On Learning &amp; Real-World Skills</h2>
+      <p class="section-subtext fade-up">
+        From AI workshops to tech demos and networking events, we give you the tools
+        and connections to stand out in the business-tech world.
+      </p>
+      <div class="pillars-grid">
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon blue">&#128188;</div>
+          <h3>Career Development</h3>
+          <p>Resume workshops, mock interviews, and employer panels to help you land internships and full-time roles in MIS and IT.</p>
+        </div>
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon teal">&#129302;</div>
+          <h3>AI &amp; Emerging Tech</h3>
+          <p>Explore artificial intelligence, cloud platforms, cybersecurity, and the latest tools reshaping how businesses operate.</p>
+        </div>
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon gold">&#128736;</div>
+          <h3>Hands-On Projects</h3>
+          <p>Work on real projects that build your portfolio &mdash; from database design to data dashboards and automation scripts.</p>
+        </div>
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon teal">&#127891;</div>
+          <h3>Workshops &amp; Events</h3>
+          <p>Interactive sessions on Excel, SQL, Python, ERP systems, and more &mdash; led by students, professors, and industry professionals.</p>
+        </div>
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon blue">&#128421;</div>
+          <h3>Tech Demonstrations</h3>
+          <p>Live demos showcasing business technologies, software tools, and innovative solutions used in modern enterprises.</p>
+        </div>
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon gold">&#129309;</div>
+          <h3>Network &amp; Connect</h3>
+          <p>Meet students from every major, connect with alumni, and build relationships that last beyond graduation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT STRIP -->
+  <section class="about-strip">
+    <div class="section-container">
+      <span class="section-label fade-up" style="color: var(--gold);">About The Club</span>
+      <h2 class="section-heading fade-up" style="color: var(--white);">Open to All Majors. No Experience Needed.</h2>
+      <div class="about-grid">
+        <div class="about-text fade-up">
+          <p>
+            The MIS Club at UMass Dartmouth is a student organization within the
+            <span class="highlight-text">College of Business</span> dedicated to bridging
+            the gap between business strategy and information technology.
+          </p>
+          <p>
+            Whether you are a business major curious about tech, a CS student interested
+            in the corporate side, or any student who wants to develop professional
+            skills &mdash; <span class="highlight-text">you belong here</span>.
+          </p>
+          <div class="stat-row">
+            <div class="stat-item">
+              <div class="stat-number">6</div>
+              <div class="stat-label">Focus Areas</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">All</div>
+              <div class="stat-label">Majors Welcome</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">0</div>
+              <div class="stat-label">Experience Required</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual fade-up">
+          <div class="info-tag"><span class="tag-icon">&#127891;</span> Career Development Workshops</div>
+          <div class="info-tag"><span class="tag-icon">&#129302;</span> AI &amp; Emerging Technology Talks</div>
+          <div class="info-tag"><span class="tag-icon">&#128187;</span> Hands-On Technical Projects</div>
+          <div class="info-tag"><span class="tag-icon">&#127758;</span> Industry Networking Events</div>
+          <div class="info-tag"><span class="tag-icon">&#128640;</span> Live Tech Demonstrations</div>
+          <div class="info-tag"><span class="tag-icon">&#128101;</span> Cross-Major Community</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-container">
+      <div class="cta-box fade-up">
+        <h2>Ready to Build Your Future?</h2>
+        <p>
+          Sign up for meeting updates and become part of a community where business
+          meets technology. Meetings coming soon!
+        </p>
+        <a href="contact.html" class="btn-primary">Get Involved &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="f-logo">MIS</div>
+        <p>MIS Club &bull; UMass Dartmouth &bull; College of Business</p>
+      </div>
+      <div class="footer-right">
+        &copy; 2026 MIS Club. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Scroll-triggered fade-up animations
+    const faders = document.querySelectorAll('.fade-up');
+    const observerOpts = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOpts);
+    faders.forEach((el) => observer.observe(el));
+  </script>
+
+</body>
+</html>
