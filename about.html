@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | MIS Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f6fa;
+      color: #1a1a2e;
+      overflow-x: hidden;
+    }
+    :root {
+      --navy:       #003764;
+      --navy-dark:  #00243f;
+      --gold:       #FEC24D;
+      --gold-light: #ffe6a0;
+      --teal:       #00AEDD;
+      --teal-dark:  #008db8;
+      --white:      #ffffff;
+      --light-bg:   #f0f4f8;
+      --text-dark:  #0b1d33;
+      --text-muted: #5a6a7e;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .navbar {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(0, 55, 100, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.3s ease;
+    }
+    .navbar .nav-container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 70px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px; background: var(--gold); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 15px; color: var(--navy-dark); letter-spacing: -0.5px;
+    }
+    .nav-logo .logo-text {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 1.15rem; color: var(--white); letter-spacing: 0.5px;
+    }
+    .nav-logo .logo-text span { color: var(--gold); }
+    .nav-links { display: flex; list-style: none; gap: 0; }
+    .nav-links li a {
+      display: block; padding: 0.5rem 1.2rem;
+      color: rgba(255, 255, 255, 0.8); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.3px;
+      border-radius: 8px; transition: all 0.25s ease;
+    }
+    .nav-links li a:hover {
+      color: var(--gold); background: rgba(254, 194, 77, 0.1);
+    }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 5px;
+    }
+    .hamburger span {
+      width: 26px; height: 2.5px; background: var(--white);
+      border-radius: 3px; transition: all 0.3s ease;
+    }
+
+    
+    /* ===== SECTIONS ===== */
+    section { padding: 90px 2rem; }
+    .section-container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.75rem;
+    }
+    .section-heading {
+      font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem;
+      font-weight: 800; color: var(--navy); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-subtext {
+      font-size: 1.05rem; color: var(--text-muted);
+      line-height: 1.7; max-width: 650px;
+    } 
+
+    
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--navy-dark); padding: 3rem 2rem 2rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-container {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left { display: flex; align-items: center; gap: 10px; }
+    .footer-left .f-logo {
+      width: 34px; height: 34px; background: var(--gold);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 12px; color: var(--navy-dark);
+    }
+    .footer-left p { font-size: 0.85rem; }
+    .footer-right { font-size: 0.8rem; letter-spacing: 0.3px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">MIS</div>
+        <div class="logo-text">MIS <span>Club</span></div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+	<li><a href="about.html">About Us</a></li>        
+	<li><a href="officers.html">Officers</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- WHO WE ARE -->
+  
+<div class="flex-container">
+  <div class="centered-box">
+    	<h2 class="section-heading fade-up">Who We Are</h2>
+      <p class="section-subtext fade-up">
+        The MIS Club is a student-led organization founded in Spring 2024 by Management Information Systems (MIS) students with interests spanning business technology and digital transformation. Open to all majors, the club welcomes anyone who wants to explore how MIS tools and strategies can strengthen real-world business 	decisions and support operations across industries.
+      </p>
+	<br>
+	<p class="section-subtext fade-up">
+        Our mission is to help members build practical, career-ready skills and feel confident entering the business world—whether you're pursuing MIS or simply want to gain in-demand knowledge that complements your major. Through a mix of activities, workshops, and networking gatherings, members have opportunities to 	learn, collaborate, and explore emerging trends while working toward their academic and professional goals.
+      </p>
+	<br>
+	<p class="section-subtext fade-up">
+        Led by students and supported by professors across disciplines, the MIS Club hosts events featuring career development, industry tools and platforms, AI trends and applications, live demos, and other topics relevant to today's workplace. Each session is designed as a practical mini-workshop, offering actionable 	insights, resources, and hands-on guidance that show how MIS connects to—and adds value within—many fields.
+      </p>
+  </div>
+</div>
+
+<style>
+  .flex-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    height: 100vh;           /* Sets container to full viewport height */
+  }
+  
+</style>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="f-logo">MIS</div>
+        <p>MIS Club &bull; UMass Dartmouth &bull; College of Business</p>
+      </div>
+      <div class="footer-right">
+        &copy; 2026 MIS Club. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>
